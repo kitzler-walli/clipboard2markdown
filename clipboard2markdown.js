@@ -20,6 +20,13 @@
     },
 
     {
+      filter: 'b',
+      replacement : function (content) {
+        return '**' + content  + '**';
+      }
+    },
+
+    {
       filter: 'sup',
       replacement: function (content) {
         return '^' + content + '^';
@@ -86,7 +93,14 @@
         }
       }
     },
-
+    {
+      filter: function (node) {
+        return node.style.fontWeight === "700";
+      },
+      replacement: function (content, node) {
+        return '**' + content  + '**';
+      }
+    },
     {
       filter: 'li',
       replacement: function (content, node) {
@@ -116,7 +130,7 @@
               .replace(/\u2014/g, '---')
               .replace(/\u2026/g, '...')
               .replace(/[ ]+\n/g, '\n')
-              .replace(/\s*\\\n/g, '\\\n')
+              .replace(/\s*\\\n/g, '\n')
               .replace(/\s*\\\n\s*\\\n/g, '\n\n')
               .replace(/\s*\\\n\n/g, '\n\n')
               .replace(/\n-\n/g, '\n')
